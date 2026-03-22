@@ -1,0 +1,69 @@
+{
+  "channels_used": [
+    "AF3",
+    "F7",
+    "F3",
+    "FC5",
+    "T7",
+    "P7",
+    "O1",
+    "O2",
+    "P8",
+    "T8",
+    "FC6",
+    "F4",
+    "F8",
+    "AF4"
+  ],
+  "class_balance_per_split": {
+    "test": {
+      "binary": {
+        "0": 2079,
+        "1": 2079
+      },
+      "ordinal": {
+        "high": 1485,
+        "low": 2079,
+        "medium": 594
+      }
+    },
+    "train": {
+      "binary": {
+        "0": 10098,
+        "1": 10098
+      },
+      "ordinal": {
+        "high": 5643,
+        "low": 9207,
+        "medium": 5346
+      }
+    },
+    "val": {
+      "binary": {
+        "0": 2079,
+        "1": 2079
+      },
+      "ordinal": {
+        "high": 1188,
+        "low": 2079,
+        "medium": 891
+      }
+    }
+  },
+  "feature_count": 210,
+  "malformed_file_count": 0,
+  "missing_file_count": 0,
+  "number_of_recordings": 96,
+  "number_of_subjects": 48,
+  "number_of_windows": 28512,
+  "ratings_available": true,
+  "sampling_rate": 128.0,
+  "skipped_file_count": 0,
+  "window_config": {
+    "bandpass_high": 40.0,
+    "bandpass_low": 1.0,
+    "notch_freq": null,
+    "stride_seconds": 0.5,
+    "window_seconds": 2.0
+  }
+}

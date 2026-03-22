@@ -1,0 +1,66 @@
+{
+  "mean_margin": 0.18544950232903656,
+  "median_margin": 0.1743921963781046,
+  "pair_accuracy": 0.8571428571428571,
+  "pair_count": 7,
+  "per_subject": [
+    {
+      "mean_margin": 0.22166953497254133,
+      "median_margin": 0.22166953497254133,
+      "pair_accuracy": 1.0,
+      "pair_count": 1,
+      "subject_id": "sub02",
+      "tie_rate": 0.0
+    },
+    {
+      "mean_margin": 0.3615452845159708,
+      "median_margin": 0.3615452845159708,
+      "pair_accuracy": 1.0,
+      "pair_count": 1,
+      "subject_id": "sub03",
+      "tie_rate": 0.0
+    },
+    {
+      "mean_margin": 0.1743921963781046,
+      "median_margin": 0.1743921963781046,
+      "pair_accuracy": 1.0,
+      "pair_count": 1,
+      "subject_id": "sub09",
+      "tie_rate": 0.0
+    },
+    {
+      "mean_margin": 0.164049682944164,
+      "median_margin": 0.164049682944164,
+      "pair_accuracy": 1.0,
+      "pair_count": 1,
+      "subject_id": "sub14",
+      "tie_rate": 0.0
+    },
+    {
+      "mean_margin": 0.15446907584286174,
+      "median_margin": 0.15446907584286174,
+      "pair_accuracy": 1.0,
+      "pair_count": 1,
+      "subject_id": "sub34",
+      "tie_rate": 0.0
+    },
+    {
+      "mean_margin": 0.2726269461212776,
+      "median_margin": 0.2726269461212776,
+      "pair_accuracy": 1.0,
+      "pair_count": 1,
+      "subject_id": "sub37",
+      "tie_rate": 0.0
+    },
+    {
+      "mean_margin": -0.050606204471663974,
+      "median_margin": -0.050606204471663974,
+      "pair_accuracy": 0.0,
+      "pair_count": 1,
+      "subject_id": "sub47",
+      "tie_rate": 0.0
+    }
+  ],
+  "subject_count": 7,
+  "tie_rate": 0.0
+}

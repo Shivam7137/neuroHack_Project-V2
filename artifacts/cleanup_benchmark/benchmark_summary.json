@@ -1,0 +1,236 @@
+{
+  "delta_vs_none": {
+    "heavy": {
+      "concentration": {
+        "test": {
+          "balanced_accuracy": 0.01764698119616226,
+          "f1": 0.018519824036997368,
+          "roc_auc": 0.0423058255366332
+        },
+        "validation": {
+          "balanced_accuracy": 0.004921777835846131,
+          "f1": 0.004023744767573945,
+          "roc_auc": -0.02613854630707879
+        }
+      },
+      "stress": {
+        "test": {
+          "macro_f1": 0.04978986791206083,
+          "mae": 0.007723568294541572,
+          "spearman": -0.0022875040050099327
+        },
+        "validation": {
+          "macro_f1": 0.008244666301016446,
+          "mae": -0.0025482719596593983,
+          "spearman": 0.019601249064289505
+        }
+      }
+    },
+    "light": {
+      "concentration": {
+        "test": {
+          "balanced_accuracy": 0.043228278938124864,
+          "f1": 0.04497087847882886,
+          "roc_auc": 0.06566965776473122
+        },
+        "validation": {
+          "balanced_accuracy": 0.03203086771252428,
+          "f1": 0.036743074618051375,
+          "roc_auc": -0.0007783633635671805
+        }
+      },
+      "stress": {
+        "test": {
+          "macro_f1": -0.0181814379668791,
+          "mae": 0.012402865735745283,
+          "spearman": -0.044022601812137185
+        },
+        "validation": {
+          "macro_f1": -0.013762945232387136,
+          "mae": 0.01141953365454057,
+          "spearman": -0.05078236290529703
+        }
+      }
+    },
+    "medium": {
+      "concentration": {
+        "test": {
+          "balanced_accuracy": 0.036575882396531645,
+          "f1": 0.03875885126789891,
+          "roc_auc": 0.056137799265358335
+        },
+        "validation": {
+          "balanced_accuracy": 0.01684252984517909,
+          "f1": 0.01826788003797053,
+          "roc_auc": -0.0058867408755560735
+        }
+      },
+      "stress": {
+        "test": {
+          "macro_f1": 0.03525660967838415,
+          "mae": 0.013323515060998103,
+          "spearman": -0.04004243166002791
+        },
+        "validation": {
+          "macro_f1": -0.0022084545622565732,
+          "mae": 0.003343129893791902,
+          "spearman": 0.000457977493542705
+        }
+      }
+    }
+  },
+  "profiles": [
+    {
+      "artifacts_root": "C:\\Users\\shiva\\School Stuff\\NeuroHack V2\\artifacts\\cleanup_benchmark\\none",
+      "cleanup_level": "none",
+      "concentration": {
+        "subjects": {
+          "test": 6,
+          "train": 25,
+          "val": 5
+        },
+        "test": {
+          "balanced_accuracy": 0.6870968815053937,
+          "f1": 0.5192953020134228,
+          "roc_auc": 0.7351876944021147
+        },
+        "validation": {
+          "balanced_accuracy": 0.6540609860359077,
+          "f1": 0.5083388925950634,
+          "roc_auc": 0.6751864037928443
+        }
+      },
+      "stress": {
+        "subjects": {
+          "test": 7,
+          "train": 34,
+          "val": 7
+        },
+        "test": {
+          "macro_f1": 0.23678303185558833,
+          "mae": 0.2639892888600435,
+          "spearman": 0.40664688583140207
+        },
+        "validation": {
+          "macro_f1": 0.16939065744666443,
+          "mae": 0.24593875972085905,
+          "spearman": 0.5799466564570589
+        }
+      }
+    },
+    {
+      "artifacts_root": "C:\\Users\\shiva\\School Stuff\\NeuroHack V2\\artifacts\\cleanup_benchmark\\light",
+      "cleanup_level": "light",
+      "concentration": {
+        "subjects": {
+          "test": 6,
+          "train": 25,
+          "val": 5
+        },
+        "test": {
+          "balanced_accuracy": 0.7303251604435186,
+          "f1": 0.5642661804922516,
+          "roc_auc": 0.800857352166846
+        },
+        "validation": {
+          "balanced_accuracy": 0.686091853748432,
+          "f1": 0.5450819672131147,
+          "roc_auc": 0.6744080404292772
+        }
+      },
+      "stress": {
+        "subjects": {
+          "test": 7,
+          "train": 34,
+          "val": 7
+        },
+        "test": {
+          "macro_f1": 0.21860159388870923,
+          "mae": 0.2763921545957888,
+          "spearman": 0.3626242840192649
+        },
+        "validation": {
+          "macro_f1": 0.1556277122142773,
+          "mae": 0.2573582933753996,
+          "spearman": 0.5291642935517619
+        }
+      }
+    },
+    {
+      "artifacts_root": "C:\\Users\\shiva\\School Stuff\\NeuroHack V2\\artifacts\\cleanup_benchmark\\medium",
+      "cleanup_level": "medium",
+      "concentration": {
+        "subjects": {
+          "test": 6,
+          "train": 25,
+          "val": 5
+        },
+        "test": {
+          "balanced_accuracy": 0.7236727639019254,
+          "f1": 0.5580541532813217,
+          "roc_auc": 0.7913254936674731
+        },
+        "validation": {
+          "balanced_accuracy": 0.6709035158810868,
+          "f1": 0.5266067726330339,
+          "roc_auc": 0.6692996629172883
+        }
+      },
+      "stress": {
+        "subjects": {
+          "test": 7,
+          "train": 34,
+          "val": 7
+        },
+        "test": {
+          "macro_f1": 0.2720396415339725,
+          "mae": 0.27731280392104163,
+          "spearman": 0.36660445417137416
+        },
+        "validation": {
+          "macro_f1": 0.16718220288440785,
+          "mae": 0.24928188961465095,
+          "spearman": 0.5804046339506016
+        }
+      }
+    },
+    {
+      "artifacts_root": "C:\\Users\\shiva\\School Stuff\\NeuroHack V2\\artifacts\\cleanup_benchmark\\heavy",
+      "cleanup_level": "heavy",
+      "concentration": {
+        "subjects": {
+          "test": 6,
+          "train": 25,
+          "val": 5
+        },
+        "test": {
+          "balanced_accuracy": 0.704743862701556,
+          "f1": 0.5378151260504201,
+          "roc_auc": 0.7774935199387479
+        },
+        "validation": {
+          "balanced_accuracy": 0.6589827638717538,
+          "f1": 0.5123626373626373,
+          "roc_auc": 0.6490478574857655
+        }
+      },
+      "stress": {
+        "subjects": {
+          "test": 7,
+          "train": 34,
+          "val": 7
+        },
+        "test": {
+          "macro_f1": 0.28657289976764916,
+          "mae": 0.2717128571545851,
+          "spearman": 0.40435938182639214
+        },
+        "validation": {
+          "macro_f1": 0.17763532374768087,
+          "mae": 0.24339048776119965,
+          "spearman": 0.5995479055213484
+        }
+      }
+    }
+  ]
+}

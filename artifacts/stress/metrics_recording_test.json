@@ -1,0 +1,417 @@
+{
+  "accuracy": 0.21428571428571427,
+  "confusion_matrix": [
+    [
+      1,
+      3,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      3,
+      2,
+      0
+    ]
+  ],
+  "macro_f1": 0.20476190476190476,
+  "mae": 0.24739299316439226,
+  "per_subject": [
+    {
+      "accuracy": 0.5,
+      "confusion_matrix": [
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "macro_f1": 0.3333333333333333,
+      "mae": 0.08608324534099664,
+      "quadratic_weighted_kappa": 0.6666666666666667,
+      "rating_level_accuracy": 1.0,
+      "rating_level_confusion_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "spearman": 0.9999999999999999,
+      "subject_id": "sub02"
+    },
+    {
+      "accuracy": 0.5,
+      "confusion_matrix": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "macro_f1": 0.3333333333333333,
+      "mae": 0.09945901619043515,
+      "quadratic_weighted_kappa": 0.6666666666666667,
+      "rating_level_accuracy": 1.0,
+      "rating_level_confusion_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "spearman": 0.9999999999999999,
+      "subject_id": "sub03"
+    },
+    {
+      "accuracy": 0.0,
+      "confusion_matrix": [
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "macro_f1": 0.0,
+      "mae": 0.3277224035493347,
+      "quadratic_weighted_kappa": 0.0,
+      "rating_level_accuracy": 0.5,
+      "rating_level_confusion_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "spearman": 0.9999999999999999,
+      "subject_id": "sub09"
+    },
+    {
+      "accuracy": 0.0,
+      "confusion_matrix": [
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "macro_f1": 0.0,
+      "mae": 0.22300375775332834,
+      "quadratic_weighted_kappa": 0.6,
+      "rating_level_accuracy": 0.0,
+      "rating_level_confusion_matrix": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "spearman": 0.9999999999999999,
+      "subject_id": "sub14"
+    },
+    {
+      "accuracy": 0.5,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "macro_f1": 0.3333333333333333,
+      "mae": 0.276863514659191,
+      "quadratic_weighted_kappa": 0.0,
+      "rating_level_accuracy": 0.5,
+      "rating_level_confusion_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "spearman": 0.9999999999999999,
+      "subject_id": "sub34"
+    },
+    {
+      "accuracy": 0.0,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ]
+      ],
+      "macro_f1": 0.0,
+      "mae": 0.28554914635172174,
+      "quadratic_weighted_kappa": 0.33333333333333337,
+      "rating_level_accuracy": 0.5,
+      "rating_level_confusion_matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "spearman": 0.9999999999999999,
+      "subject_id": "sub37"
+    },
+    {
+      "accuracy": 0.0,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ]
+      ],
+      "macro_f1": 0.0,
+      "mae": 0.4330698683057381,
+      "quadratic_weighted_kappa": 0.0,
+      "rating_level_accuracy": 0.0,
+      "rating_level_confusion_matrix": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "spearman": 0.9999999999999999,
+      "subject_id": "sub47"
+    }
+  ],
+  "quadratic_weighted_kappa": 0.25806451612903225,
+  "rating_level_accuracy": 0.5,
+  "rating_level_confusion_matrix": [
+    [
+      5,
+      2,
+      0
+    ],
+    [
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      5,
+      0
+    ]
+  ],
+  "spearman": 0.5268500309594519
+}

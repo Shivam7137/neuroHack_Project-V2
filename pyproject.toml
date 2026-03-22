@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eeg-decoder-baseline"
+version = "0.1.0"
+description = "Baseline EEG decoder training pipeline for concentration and stress scoring."
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "scipy>=1.11",
+  "scikit-learn>=1.4",
+  "matplotlib>=3.8",
+  "seaborn>=0.13",
+]
+
+[project.optional-dependencies]
+edf = [
+  "pyedflib>=0.1.39",
+  "mne>=1.7",
+]
+artifact = [
+  "mne>=1.7",
+  "pyprep>=0.4.3",
+  "autoreject>=0.4.3",
+]
+runtime = [
+  "brainflow>=5.12",
+]
+generator = [
+  "torch>=2.2",
+]
+dev = [
+  "pytest>=8.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

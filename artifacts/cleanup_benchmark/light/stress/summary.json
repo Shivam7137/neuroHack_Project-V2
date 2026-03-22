@@ -1,0 +1,1821 @@
+{
+  "model_name": "stress_regressor_hist_gradient_boosting",
+  "task": "stress",
+  "test": {
+    "accuracy": 0.22997884557268056,
+    "confusion_matrix": [
+      [
+        258,
+        623,
+        290,
+        14
+      ],
+      [
+        210,
+        246,
+        10,
+        0
+      ],
+      [
+        14,
+        228,
+        232,
+        0
+      ],
+      [
+        7,
+        600,
+        552,
+        25
+      ]
+    ],
+    "macro_f1": 0.21860159388870923,
+    "mae": 0.2763921545957888,
+    "per_subject": [
+      {
+        "accuracy": 0.3691983122362869,
+        "confusion_matrix": [
+          [
+            90,
+            145,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            14,
+            138,
+            85,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.35085019852044946,
+        "mae": 0.17674762763684587,
+        "quadratic_weighted_kappa": 0.4781954887218045,
+        "rating_level_accuracy": 0.759493670886076,
+        "rating_level_confusion_matrix": [
+          [
+            203,
+            34,
+            0
+          ],
+          [
+            68,
+            157,
+            12
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.6328109766772565,
+        "subject_id": "sub02"
+      },
+      {
+        "accuracy": 0.5759493670886076,
+        "confusion_matrix": [
+          [
+            126,
+            111,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            90,
+            147,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.48661329201101927,
+        "mae": 0.13308399988681965,
+        "quadratic_weighted_kappa": 0.7309236947791165,
+        "rating_level_accuracy": 0.9135021097046413,
+        "rating_level_confusion_matrix": [
+          [
+            225,
+            12,
+            0
+          ],
+          [
+            8,
+            208,
+            21
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.8532611214191573,
+        "subject_id": "sub03"
+      },
+      {
+        "accuracy": 0.08649789029535865,
+        "confusion_matrix": [
+          [
+            41,
+            186,
+            10,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            152,
+            85,
+            0
+          ]
+        ],
+        "macro_f1": 0.0737410071942446,
+        "mae": 0.288003133253066,
+        "quadratic_weighted_kappa": 0.27466456195737965,
+        "rating_level_accuracy": 0.3459915611814346,
+        "rating_level_confusion_matrix": [
+          [
+            152,
+            84,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            40,
+            185,
+            12
+          ]
+        ],
+        "spearman": 0.5691644666335532,
+        "subject_id": "sub09"
+      },
+      {
+        "accuracy": 0.014767932489451477,
+        "confusion_matrix": [
+          [
+            1,
+            150,
+            85,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            42,
+            189,
+            6
+          ]
+        ],
+        "macro_f1": 0.014395922303347568,
+        "mae": 0.23741020545667507,
+        "quadratic_weighted_kappa": 0.28726061615320564,
+        "rating_level_accuracy": 0.24050632911392406,
+        "rating_level_confusion_matrix": [
+          [
+            40,
+            186,
+            11
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            5,
+            158,
+            74
+          ]
+        ],
+        "spearman": 0.5227863895474437,
+        "subject_id": "sub14"
+      },
+      {
+        "accuracy": 0.35443037974683544,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            63,
+            167,
+            7,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            173,
+            60,
+            1
+          ]
+        ],
+        "macro_f1": 0.146814878464384,
+        "mae": 0.3448681306874809,
+        "quadratic_weighted_kappa": 0.2131603336422614,
+        "rating_level_accuracy": 0.3438818565400844,
+        "rating_level_confusion_matrix": [
+          [
+            158,
+            79,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            50,
+            182,
+            5
+          ]
+        ],
+        "spearman": 0.5359227331901849,
+        "subject_id": "sub34"
+      },
+      {
+        "accuracy": 0.16952789699570817,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            147,
+            79,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            165,
+            69,
+            0
+          ]
+        ],
+        "macro_f1": 0.08350951374207188,
+        "mae": 0.2902614240967028,
+        "quadratic_weighted_kappa": 0.3181192705002228,
+        "rating_level_accuracy": 0.47639484978540775,
+        "rating_level_confusion_matrix": [
+          [
+            217,
+            12,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            42,
+            190,
+            5
+          ]
+        ],
+        "spearman": 0.7846275291518259,
+        "subject_id": "sub37"
+      },
+      {
+        "accuracy": 0.03805496828752643,
+        "confusion_matrix": [
+          [
+            0,
+            31,
+            193,
+            13
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            68,
+            149,
+            18
+          ]
+        ],
+        "macro_f1": 0.033707865168539325,
+        "mae": 0.46500255388562595,
+        "quadratic_weighted_kappa": -0.08211573071408962,
+        "rating_level_accuracy": 0.14587737843551796,
+        "rating_level_confusion_matrix": [
+          [
+            4,
+            151,
+            82
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            17,
+            154,
+            65
+          ]
+        ],
+        "spearman": -0.1542780004882383,
+        "subject_id": "sub47"
+      }
+    ],
+    "quadratic_weighted_kappa": 0.27140774089106134,
+    "quality_control": {
+      "accepted_windows": 3309,
+      "rejected_windows": 9,
+      "rejection_rate": 0.0027124773960217,
+      "rejection_reasons": {
+        "extreme_amplitude": 8,
+        "extreme_variance": 2
+      },
+      "total_windows": 3318
+    },
+    "rating_level_accuracy": 0.46086430945905105,
+    "rating_level_confusion_matrix": [
+      [
+        999,
+        558,
+        94
+      ],
+      [
+        76,
+        365,
+        33
+      ],
+      [
+        154,
+        869,
+        161
+      ]
+    ],
+    "spearman": 0.3626242840192649
+  },
+  "test_pairwise": {
+    "mean_margin": 0.18544950232903656,
+    "median_margin": 0.1743921963781046,
+    "pair_accuracy": 0.8571428571428571,
+    "pair_count": 7,
+    "per_subject": [
+      {
+        "mean_margin": 0.22166953497254133,
+        "median_margin": 0.22166953497254133,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub02",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.3615452845159708,
+        "median_margin": 0.3615452845159708,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub03",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.1743921963781046,
+        "median_margin": 0.1743921963781046,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub09",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.164049682944164,
+        "median_margin": 0.164049682944164,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub14",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.15446907584286174,
+        "median_margin": 0.15446907584286174,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub34",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.2726269461212776,
+        "median_margin": 0.2726269461212776,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub37",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": -0.050606204471663974,
+        "median_margin": -0.050606204471663974,
+        "pair_accuracy": 0.0,
+        "pair_count": 1,
+        "subject_id": "sub47",
+        "tie_rate": 0.0
+      }
+    ],
+    "subject_count": 7,
+    "tie_rate": 0.0
+  },
+  "test_recording": {
+    "accuracy": 0.14285714285714285,
+    "confusion_matrix": [
+      [
+        0,
+        4,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        3,
+        2,
+        0
+      ]
+    ],
+    "macro_f1": 0.12878787878787878,
+    "mae": 0.25572923584910395,
+    "per_subject": [
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.13916523251372934,
+        "quadratic_weighted_kappa": 0.0,
+        "rating_level_accuracy": 1.0,
+        "rating_level_confusion_matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub02"
+      },
+      {
+        "accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.3333333333333333,
+        "mae": 0.09753335628763769,
+        "quadratic_weighted_kappa": 0.6666666666666667,
+        "rating_level_accuracy": 1.0,
+        "rating_level_confusion_matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub03"
+      },
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.2878039018109477,
+        "quadratic_weighted_kappa": 0.0,
+        "rating_level_accuracy": 0.5,
+        "rating_level_confusion_matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub09"
+      },
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.230475158527918,
+        "quadratic_weighted_kappa": 0.6,
+        "rating_level_accuracy": 0.0,
+        "rating_level_confusion_matrix": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub14"
+      },
+      {
+        "accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.3333333333333333,
+        "mae": 0.29776546207856913,
+        "quadratic_weighted_kappa": 0.0,
+        "rating_level_accuracy": 0.5,
+        "rating_level_confusion_matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub34"
+      },
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.2745584374890939,
+        "quadratic_weighted_kappa": 0.33333333333333337,
+        "rating_level_accuracy": 0.5,
+        "rating_level_confusion_matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub37"
+      },
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.462803102235832,
+        "quadratic_weighted_kappa": 0.0,
+        "rating_level_accuracy": 0.0,
+        "rating_level_confusion_matrix": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "spearman": -0.9999999999999999,
+        "subject_id": "sub47"
+      }
+    ],
+    "quadratic_weighted_kappa": 0.1724137931034483,
+    "rating_level_accuracy": 0.5,
+    "rating_level_confusion_matrix": [
+      [
+        5,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        5,
+        0
+      ]
+    ],
+    "spearman": 0.3504892155111609
+  },
+  "validation": {
+    "accuracy": 0.2007233273056058,
+    "confusion_matrix": [
+      [
+        36,
+        1229,
+        394,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        106,
+        574,
+        31
+      ],
+      [
+        1,
+        137,
+        754,
+        56
+      ]
+    ],
+    "macro_f1": 0.1556277122142773,
+    "mae": 0.2573582933753996,
+    "per_subject": [
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            189,
+            48,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            72,
+            165,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.33065277796500087,
+        "quadratic_weighted_kappa": 0.29620253164556964,
+        "rating_level_accuracy": 0.02531645569620253,
+        "rating_level_confusion_matrix": [
+          [
+            3,
+            234,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            10,
+            218,
+            9
+          ]
+        ],
+        "spearman": 0.48646100736164805,
+        "subject_id": "sub01"
+      },
+      {
+        "accuracy": 0.49156118143459915,
+        "confusion_matrix": [
+          [
+            23,
+            202,
+            12,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            210,
+            20
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.2729889391654097,
+        "mae": 0.2059441611121289,
+        "quadratic_weighted_kappa": 0.653316645807259,
+        "rating_level_accuracy": 0.46624472573839665,
+        "rating_level_confusion_matrix": [
+          [
+            127,
+            110,
+            0
+          ],
+          [
+            0,
+            94,
+            143
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.8552037239811268,
+        "subject_id": "sub12"
+      },
+      {
+        "accuracy": 0.06329113924050633,
+        "confusion_matrix": [
+          [
+            9,
+            204,
+            24,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            212,
+            21
+          ]
+        ],
+        "macro_f1": 0.058990357345433925,
+        "mae": 0.14905481768194853,
+        "quadratic_weighted_kappa": 0.5759036144578313,
+        "rating_level_accuracy": 0.5358649789029536,
+        "rating_level_confusion_matrix": [
+          [
+            68,
+            169,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            51,
+            186
+          ]
+        ],
+        "spearman": 0.8590274484217368,
+        "subject_id": "sub13"
+      },
+      {
+        "accuracy": 0.47890295358649787,
+        "confusion_matrix": [
+          [
+            0,
+            17,
+            220,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            227,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.16593567251461988,
+        "mae": 0.3676260662264535,
+        "quadratic_weighted_kappa": 0.027867095391211127,
+        "rating_level_accuracy": 0.20675105485232068,
+        "rating_level_confusion_matrix": [
+          [
+            0,
+            163,
+            74
+          ],
+          [
+            0,
+            98,
+            139
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.2956756596676595,
+        "subject_id": "sub15"
+      },
+      {
+        "accuracy": 0.004219409282700422,
+        "confusion_matrix": [
+          [
+            1,
+            232,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            57,
+            178,
+            1
+          ]
+        ],
+        "macro_f1": 0.004192890545339474,
+        "mae": 0.2627291817897977,
+        "quadratic_weighted_kappa": 0.4433249370277078,
+        "rating_level_accuracy": 0.2679324894514768,
+        "rating_level_confusion_matrix": [
+          [
+            91,
+            146,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            195,
+            36
+          ]
+        ],
+        "spearman": 0.7526415668079887,
+        "subject_id": "sub20"
+      },
+      {
+        "accuracy": 0.29324894514767935,
+        "confusion_matrix": [
+          [
+            2,
+            213,
+            22,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            92,
+            137,
+            8
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.17716389839820804,
+        "mae": 0.25853863907431945,
+        "quadratic_weighted_kappa": 0.3988005997001499,
+        "rating_level_accuracy": 0.4810126582278481,
+        "rating_level_confusion_matrix": [
+          [
+            55,
+            182,
+            0
+          ],
+          [
+            12,
+            173,
+            52
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.5491824227826232,
+        "subject_id": "sub23"
+      },
+      {
+        "accuracy": 0.07383966244725738,
+        "confusion_matrix": [
+          [
+            1,
+            172,
+            64,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            199,
+            34
+          ]
+        ],
+        "macro_f1": 0.06483146764240752,
+        "mae": 0.22696240977814827,
+        "quadratic_weighted_kappa": 0.4876494023904383,
+        "rating_level_accuracy": 0.43670886075949367,
+        "rating_level_confusion_matrix": [
+          [
+            31,
+            204,
+            2
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            61,
+            176
+          ]
+        ],
+        "spearman": 0.826834155550794,
+        "subject_id": "sub36"
+      }
+    ],
+    "quadratic_weighted_kappa": 0.40985588835807885,
+    "quality_control": {
+      "accepted_windows": 3318,
+      "rejected_windows": 0,
+      "rejection_rate": 0.0,
+      "rejection_reasons": {},
+      "total_windows": 3318
+    },
+    "rating_level_accuracy": 0.34569017480409886,
+    "rating_level_confusion_matrix": [
+      [
+        375,
+        1208,
+        76
+      ],
+      [
+        12,
+        365,
+        334
+      ],
+      [
+        16,
+        525,
+        407
+      ]
+    ],
+    "spearman": 0.5291642935517619
+  },
+  "validation_pairwise": {
+    "mean_margin": 0.23091801953901064,
+    "median_margin": 0.22454163642040453,
+    "pair_accuracy": 1.0,
+    "pair_count": 7,
+    "per_subject": [
+      {
+        "mean_margin": 0.08869444406999827,
+        "median_margin": 0.08869444406999827,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub01",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.4039812114146779,
+        "median_margin": 0.4039812114146779,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub12",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.3750634497512236,
+        "median_margin": 0.3750634497512236,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub13",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.05006694419507496,
+        "median_margin": 0.05006694419507496,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub15",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.22454163642040453,
+        "median_margin": 0.22454163642040453,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub20",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.17673464725635157,
+        "median_margin": 0.17673464725635157,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub23",
+        "tie_rate": 0.0
+      },
+      {
+        "mean_margin": 0.29734380366534374,
+        "median_margin": 0.29734380366534374,
+        "pair_accuracy": 1.0,
+        "pair_count": 1,
+        "subject_id": "sub36",
+        "tie_rate": 0.0
+      }
+    ],
+    "subject_count": 7,
+    "tie_rate": 0.0
+  },
+  "validation_recording": {
+    "accuracy": 0.21428571428571427,
+    "confusion_matrix": [
+      [
+        0,
+        6,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        0
+      ],
+      [
+        0,
+        0,
+        4,
+        0
+      ]
+    ],
+    "macro_f1": 0.13636363636363635,
+    "mae": 0.24394503702957504,
+    "per_subject": [
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.33065277796500087,
+        "quadratic_weighted_kappa": 0.6,
+        "rating_level_accuracy": 0.0,
+        "rating_level_confusion_matrix": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub01"
+      },
+      {
+        "accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.3333333333333333,
+        "mae": 0.19155037443598066,
+        "quadratic_weighted_kappa": 0.6666666666666667,
+        "rating_level_accuracy": 0.5,
+        "rating_level_confusion_matrix": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub12"
+      },
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.12496827512438821,
+        "quadratic_weighted_kappa": 0.6,
+        "rating_level_accuracy": 0.5,
+        "rating_level_confusion_matrix": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub13"
+      },
+      {
+        "accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.3333333333333333,
+        "mae": 0.3554731492818304,
+        "quadratic_weighted_kappa": 0.0,
+        "rating_level_accuracy": 0.0,
+        "rating_level_confusion_matrix": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub15"
+      },
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.26272918178979776,
+        "quadratic_weighted_kappa": 0.6,
+        "rating_level_accuracy": 0.0,
+        "rating_level_confusion_matrix": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub20"
+      },
+      {
+        "accuracy": 0.5,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "macro_f1": 0.3333333333333333,
+        "mae": 0.2159134024426992,
+        "quadratic_weighted_kappa": 0.6666666666666667,
+        "rating_level_accuracy": 0.5,
+        "rating_level_confusion_matrix": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub23"
+      },
+      {
+        "accuracy": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ]
+        ],
+        "macro_f1": 0.0,
+        "mae": 0.22632809816732813,
+        "quadratic_weighted_kappa": 0.6,
+        "rating_level_accuracy": 0.5,
+        "rating_level_confusion_matrix": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "spearman": 0.9999999999999999,
+        "subject_id": "sub36"
+      }
+    ],
+    "quadratic_weighted_kappa": 0.5242718446601942,
+    "rating_level_accuracy": 0.2857142857142857,
+    "rating_level_confusion_matrix": [
+      [
+        1,
+        6,
+        0
+      ],
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        2
+      ]
+    ],
+    "spearman": 0.6466116794322723
+  }
+}

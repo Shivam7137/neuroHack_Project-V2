@@ -1,0 +1,38 @@
+{
+  "channel_names": [
+    "AF3",
+    "F7",
+    "F3",
+    "FC5",
+    "T7",
+    "P7",
+    "O1",
+    "O2",
+    "P8",
+    "T8",
+    "FC6",
+    "F4",
+    "F8",
+    "AF4"
+  ],
+  "engine_config": {
+    "alpha_base": -0.6010841852661474,
+    "alpha_concentration": 0.7925832337925389,
+    "alpha_stress": 0.1888467474028393,
+    "beta_base": -1.298807569614843,
+    "beta_concentration": 1.1311162970044255,
+    "beta_stress": 0.7983677067009024,
+    "channel_offset_step": 0.01,
+    "drift_base": 0.05,
+    "drift_stress": 0.15,
+    "noise_base": 0.04,
+    "noise_stress": 0.029999570154039742,
+    "theta_base": 0.40020287342225697,
+    "theta_concentration": -0.2,
+    "theta_stress": 0.6112100766154592
+  },
+  "iterations": 2,
+  "objective": 0.14337052506300757,
+  "sample_rate": 250.0,
+  "task_name": "stress"
+}

@@ -1,0 +1,1 @@
+"""EEG decoder baseline package."""

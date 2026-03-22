@@ -1,0 +1,95 @@
+Metadata-Version: 2.4
+Name: eeg-decoder-baseline
+Version: 0.1.0
+Summary: Baseline EEG decoder training pipeline for concentration and stress scoring.
+Requires-Python: <3.15,>=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.26
+Requires-Dist: pandas>=2.1
+Requires-Dist: scipy>=1.11
+Requires-Dist: scikit-learn>=1.4
+Requires-Dist: matplotlib>=3.8
+Requires-Dist: seaborn>=0.13
+Provides-Extra: edf
+Requires-Dist: pyedflib>=0.1.39; extra == "edf"
+Requires-Dist: mne>=1.7; extra == "edf"
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+
+# EEG Decoder Baseline Pipeline
+
+Baseline EEG decoder training pipeline for two independent scores:
+
+- concentration score from EEGMAT
+- stress score from a local manifest-driven dataset
+
+## Setup
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Optional EDF support:
+
+```bash
+python -m pip install ".[edf]"
+```
+
+For local development and tests, the EEGMAT loader also accepts `SubjectXX_1.npz` and `SubjectXX_2.npz` files with `signal`, `sampling_rate`, and optional `channel_names`.
+
+## Configuration
+
+Copy the example config and adjust dataset roots:
+
+```bash
+copy .env.example .env
+```
+
+Key environment variables:
+
+- `DATA_ROOT`
+- `EEGMAT_ROOT`
+- `STRESS_DATA_ROOT`
+- `ARTIFACTS_ROOT`
+- `WINDOW_SECONDS`
+- `STRIDE_SECONDS`
+- `BANDPASS_LOW`
+- `BANDPASS_HIGH`
+- `NOTCH_FREQ`
+- `RANDOM_SEED`
+
+## Run Commands
+
+```bash
+python -m src.training.train_concentration
+python -m src.training.train_stress
+python -m src.evaluation.evaluate_all
+python -m src.inference.scorer --input path/to/window.npy --sampling-rate 128
+```
+
+## Stress Dataset Assumptions
+
+Preferred layout:
+
+- `STRESS_DATA_ROOT/manifest.csv`
+- each row contains `file_path`, `subject_id`, `label`
+
+Optional manifest columns:
+
+- `session_id`
+- `sampling_rate`
+- `channel_names`
+- `file_format`
+
+Fallback layout without a manifest:
+
+- label folders named `natural`, `low`, `mid`, `high`
+- files placed underneath those label folders
+- subject ID inferred from the nearest stable parent folder or filename stem
+
+Supported local file formats:
+
+- `.npy`
+- `.npz`
+- `.csv`
+- `.edf` when EDF support is installed

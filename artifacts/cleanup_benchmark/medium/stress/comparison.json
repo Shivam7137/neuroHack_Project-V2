@@ -1,0 +1,16 @@
+{
+  "baseline_model": "stress_regressor_hist_gradient_boosting",
+  "current_model": "stress_regressor_hist_gradient_boosting",
+  "delta": {
+    "test": {
+      "macro_f1": 0.0,
+      "mae": 0.0,
+      "spearman": 0.0
+    },
+    "validation": {
+      "macro_f1": 0.0,
+      "mae": 0.0,
+      "spearman": 0.0
+    }
+  }
+}

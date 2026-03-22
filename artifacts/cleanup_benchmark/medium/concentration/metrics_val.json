@@ -1,0 +1,146 @@
+{
+  "accuracy": 0.6894832275611967,
+  "balanced_accuracy": 0.6709035158810868,
+  "brier_score": 0.18586448591311194,
+  "confusion_matrix": [
+    [
+      1140,
+      461
+    ],
+    [
+      224,
+      381
+    ]
+  ],
+  "f1": 0.5266067726330339,
+  "mean_probability": 0.3014441760675988,
+  "per_subject": [
+    {
+      "accuracy": 0.36099585062240663,
+      "balanced_accuracy": 0.56516563265493,
+      "brier_score": 0.22857975529962207,
+      "confusion_matrix": [
+        [
+          56,
+          305
+        ],
+        [
+          3,
+          118
+        ]
+      ],
+      "f1": 0.4338235294117647,
+      "mean_calibration_error": 0.4483727933250758,
+      "mean_probability": 0.5307123705372676,
+      "positive_rate": 0.25103734439834025,
+      "precision": 0.2789598108747045,
+      "recall": 0.9752066115702479,
+      "roc_auc": 0.817563700464733,
+      "subject_id": "Subject11"
+    },
+    {
+      "accuracy": 0.6721991701244814,
+      "balanced_accuracy": 0.45150065245759025,
+      "brier_score": 0.2401014350939727,
+      "confusion_matrix": [
+        [
+          323,
+          38
+        ],
+        [
+          120,
+          1
+        ]
+      ],
+      "f1": 0.0125,
+      "mean_calibration_error": 0.34549172834263886,
+      "mean_probability": 0.13815469845932524,
+      "positive_rate": 0.25103734439834025,
+      "precision": 0.02564102564102564,
+      "recall": 0.008264462809917356,
+      "roc_auc": 0.27117053181016915,
+      "subject_id": "Subject12"
+    },
+    {
+      "accuracy": 0.8547717842323651,
+      "balanced_accuracy": 0.8618392436070603,
+      "brier_score": 0.1240858549281798,
+      "confusion_matrix": [
+        [
+          306,
+          55
+        ],
+        [
+          15,
+          106
+        ]
+      ],
+      "f1": 0.75177304964539,
+      "mean_calibration_error": 0.3140084820799076,
+      "mean_probability": 0.29574034474594985,
+      "positive_rate": 0.25103734439834025,
+      "precision": 0.6583850931677019,
+      "recall": 0.8760330578512396,
+      "roc_auc": 0.936768846867059,
+      "subject_id": "Subject17"
+    },
+    {
+      "accuracy": 0.921161825726141,
+      "balanced_accuracy": 0.8649527254412674,
+      "brier_score": 0.12133149563071109,
+      "confusion_matrix": [
+        [
+          353,
+          8
+        ],
+        [
+          30,
+          91
+        ]
+      ],
+      "f1": 0.8272727272727273,
+      "mean_calibration_error": 0.28282375175245766,
+      "mean_probability": 0.22944165988502468,
+      "positive_rate": 0.25103734439834025,
+      "precision": 0.9191919191919192,
+      "recall": 0.7520661157024794,
+      "roc_auc": 0.9578535289942997,
+      "subject_id": "Subject21"
+    },
+    {
+      "accuracy": 0.6007194244604317,
+      "balanced_accuracy": 0.5934358056535243,
+      "brier_score": 0.23676819850801015,
+      "confusion_matrix": [
+        [
+          102,
+          55
+        ],
+        [
+          56,
+          65
+        ]
+      ],
+      "f1": 0.5394190871369294,
+      "mean_calibration_error": 0.4383415436392718,
+      "mean_probability": 0.32177769394473194,
+      "positive_rate": 0.4352517985611511,
+      "precision": 0.5416666666666666,
+      "recall": 0.5371900826446281,
+      "roc_auc": 0.6708427646470495,
+      "subject_id": "Subject31"
+    }
+  ],
+  "positive_rate": 0.2742520398912058,
+  "precision": 0.4524940617577197,
+  "quality_control": {
+    "accepted_windows": 2206,
+    "rejected_windows": 0,
+    "rejection_rate": 0.0,
+    "rejection_reasons": {},
+    "total_windows": 2206
+  },
+  "recall": 0.6297520661157024,
+  "roc_auc": 0.6692996629172883,
+  "threshold": 0.325
+}

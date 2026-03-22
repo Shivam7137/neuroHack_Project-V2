@@ -9,6 +9,7 @@ import socket
 import threading
 import tkinter as tk
 from tkinter import filedialog, ttk
+import json
 
 from src.config import get_settings
 from src.inference.scorer import RuntimeScorer
@@ -29,6 +30,8 @@ class EngineInterface(tk.Tk):
 
         self.host_var = tk.StringVar(value=DEFAULT_STREAM_HOST)
         self.port_var = tk.StringVar(value=str(DEFAULT_STREAM_PORT))
+        self.udp_out_host_var = tk.StringVar(value="127.0.0.1")
+        self.udp_out_port_var = tk.StringVar(value="5005")
         self.artifacts_root_var = tk.StringVar(value=str(Path("artifacts").resolve()))
         self.calibration_path_var = tk.StringVar(value="")
         self.concentration_cleanup_var = tk.StringVar(value=settings.concentration_cleanup_level)
@@ -83,6 +86,12 @@ class EngineInterface(tk.Tk):
         ttk.Entry(network, textvariable=self.host_var).pack(fill=tk.X, pady=(4, 8))
         ttk.Label(network, text="Port").pack(anchor="w")
         ttk.Entry(network, textvariable=self.port_var).pack(fill=tk.X, pady=(4, 8))
+        
+        ttk.Label(network, text="Game UDP Out Host").pack(anchor="w", pady=(4, 0))
+        ttk.Entry(network, textvariable=self.udp_out_host_var).pack(fill=tk.X, pady=(4, 8))
+        ttk.Label(network, text="Game UDP Out Port (0 to disable)").pack(anchor="w")
+        ttk.Entry(network, textvariable=self.udp_out_port_var).pack(fill=tk.X, pady=(4, 8))
+
         ttk.Button(network, text="Start Engine", command=self._start_listener).pack(fill=tk.X)
         ttk.Button(network, text="Stop Engine", command=self._stop_listener).pack(fill=tk.X, pady=(8, 0))
 
@@ -171,6 +180,13 @@ class EngineInterface(tk.Tk):
         except ValueError:
             self.status_var.set("Port must be an integer.")
             return
+
+        udp_out_host = self.udp_out_host_var.get().strip() or "127.0.0.1"
+        try:
+            udp_out_port = int(self.udp_out_port_var.get().strip())
+        except ValueError:
+            udp_out_port = 0
+
         artifacts_root = Path(self.artifacts_root_var.get().strip() or "artifacts").expanduser().resolve()
         calibration_text = self.calibration_path_var.get().strip()
         calibration_path = Path(calibration_text).expanduser().resolve() if calibration_text else None
@@ -192,6 +208,8 @@ class EngineInterface(tk.Tk):
                 "calibration_path": calibration_path,
                 "concentration_cleanup_level": concentration_cleanup_level,
                 "stress_cleanup_level": stress_cleanup_level,
+                "udp_out_host": udp_out_host,
+                "udp_out_port": udp_out_port,
             },
             daemon=True,
         )
@@ -213,6 +231,8 @@ class EngineInterface(tk.Tk):
         calibration_path: Path | None,
         concentration_cleanup_level: str,
         stress_cleanup_level: str,
+        udp_out_host: str,
+        udp_out_port: int,
     ) -> None:
         try:
             scorer = RuntimeScorer(
@@ -222,7 +242,8 @@ class EngineInterface(tk.Tk):
                 stress_cleanup_level=stress_cleanup_level,
             )
             engine = StreamingEngine(scorer=scorer, calibration_path=calibration_path)
-            with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as udp_socket:
+            with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as udp_socket, \
+                 socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as udp_out_socket:
                 udp_socket.bind((host, port))
                 udp_socket.settimeout(0.25)
                 self._event_queue.put(
@@ -242,6 +263,26 @@ class EngineInterface(tk.Tk):
                     chunk, sequence = unpack_chunk_datagram(packet)
                     frame = frame_from_chunk(chunk, source=str(chunk.metadata.get("source_name", "udp")))
                     for output in engine.process_frame(frame):
+                        if udp_out_port > 0:
+                            out_json = json.dumps({
+                                "timestamp": output.timestamp,
+                                "source": output.source,
+                                "concentration_score": output.concentration_score,
+                                "stress_score": output.stress_score,
+                                "concentration_probability": output.concentration_probability,
+                                "stress_predicted_class": output.stress_predicted_class,
+                            })
+                            try:
+                                udp_out_socket.sendto(out_json.encode("utf-8"), (udp_out_host, udp_out_port))
+                            except Exception as e:
+                                print(f"Failed to send UDP output: {e}")
+
+                        print(
+                            f"Time: {output.timestamp:<10.3f} | Source: {output.source:<12} | "
+                            f"Focus: {output.concentration_score:>5.1f} ({output.concentration_probability:.2f}) | "
+                            f"Stress: {output.stress_score:>5.1f} ({output.stress_predicted_class})"
+                        )
+
                         self._event_queue.put(
                             {
                                 "type": "output",

@@ -235,8 +235,12 @@ def _score_task(
         predicted_class = int(np.argmax(probabilities))
         predicted_score = float(np.sum(probabilities * np.asarray(list(STRESS_CLASS_TO_SCORE.values()))))
 
+    # Double the stress score and cap it at 100 since the model output typically maxes at ~0.5
+    raw_stress_score = predicted_score * 200.0
+    final_stress_score = float(np.clip(raw_stress_score, 0.0, 100.0))
+
     return {
-        "stress_score": predicted_score * 100.0,
+        "stress_score": final_stress_score,
         "stress_class_probabilities": probabilities_dict,
         "stress_predicted_class": STRESS_CLASS_NAMES[predicted_class],
     }

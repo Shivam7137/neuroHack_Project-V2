@@ -24,6 +24,8 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=DEFAULT_STREAM_PORT, help="Bind or connect port.")
     parser.add_argument("--artifacts-root", default="", help="Optional artifacts root override.")
     parser.add_argument("--calibration-path", default="", help="Optional calibration profile path.")
+    parser.add_argument("--udp-out-host", default="127.0.0.1", help="Host to send UDP output to (Game).")
+    parser.add_argument("--udp-out-port", type=int, default=0, help="Port to send UDP output to (Game). Use 0 to disable.")
     args = parser.parse_args()
 
     artifacts_root = Path(args.artifacts_root) if args.artifacts_root else None
@@ -40,21 +42,21 @@ def main() -> None:
                     chunk, sequence = unpack_chunk_datagram(packet)
                     frame = frame_from_chunk(chunk, source=str(chunk.metadata.get("source_name", "udp")))
                     for output in engine.process_frame(frame):
-                        print(
-                            json.dumps(
-                                {
-                                    "timestamp": output.timestamp,
-                                    "source": output.source,
-                                    "chunk_sequence": sequence,
-                                    "sender": f"{address[0]}:{address[1]}",
-                                    "concentration_score": output.concentration_score,
-                                    "stress_score": output.stress_score,
-                                    "concentration_probability": output.concentration_probability,
-                                    "stress_predicted_class": output.stress_predicted_class,
-                                }
-                            ),
-                            flush=True,
+                        out_json = json.dumps(
+                            {
+                                "timestamp": output.timestamp,
+                                "source": output.source,
+                                "chunk_sequence": sequence,
+                                "sender": f"{address[0]}:{address[1]}",
+                                "concentration_score": output.concentration_score,
+                                "stress_score": output.stress_score,
+                                "concentration_probability": output.concentration_probability,
+                                "stress_predicted_class": output.stress_predicted_class,
+                            }
                         )
+                        print(out_json, flush=True)
+                        if args.udp_out_port > 0:
+                            udp_socket.sendto(out_json.encode("utf-8"), (args.udp_out_host, args.udp_out_port))
             except KeyboardInterrupt:
                 pass
         return
@@ -71,19 +73,20 @@ def main() -> None:
                     chunk = decode_chunk(line)
                     frame = frame_from_chunk(chunk, source=str(chunk.metadata.get("source_name", "tcp")))
                     for output in engine.process_frame(frame):
-                        print(
-                            json.dumps(
-                                {
-                                    "timestamp": output.timestamp,
-                                    "source": output.source,
-                                    "concentration_score": output.concentration_score,
-                                    "stress_score": output.stress_score,
-                                    "concentration_probability": output.concentration_probability,
-                                    "stress_predicted_class": output.stress_predicted_class,
-                                }
-                            ),
-                            flush=True,
+                        out_json = json.dumps(
+                            {
+                                "timestamp": output.timestamp,
+                                "source": output.source,
+                                "concentration_score": output.concentration_score,
+                                "stress_score": output.stress_score,
+                                "concentration_probability": output.concentration_probability,
+                                "stress_predicted_class": output.stress_predicted_class,
+                            }
                         )
+                        print(out_json, flush=True)
+                        if args.udp_out_port > 0:
+                            with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as udp_out_socket:
+                                udp_out_socket.sendto(out_json.encode("utf-8"), (args.udp_out_host, args.udp_out_port))
             finally:
                 reader.close()
     except ConnectionRefusedError as exc:

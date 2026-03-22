@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import os
+import socket
 import subprocess
 import tkinter as tk
+import time
 from pathlib import Path
 from tkinter import filedialog, messagebox, ttk
 
@@ -12,6 +14,8 @@ import numpy as np
 
 from src.generator.inference.sampler import GeneratorCondition, SyntheticSampler
 from src.runtime.playback_tools import PlaybackRecording, build_synthetic_recording, write_openbci_txt
+from src.runtime.contracts import EEGChunk
+from src.runtime.stream_transport import DEFAULT_STREAM_HOST, DEFAULT_STREAM_PORT, pack_chunk_datagram, required_stream_channel_names
 
 
 class PlaybackInterface(tk.Tk):
@@ -29,6 +33,9 @@ class PlaybackInterface(tk.Tk):
         self.concentration_var = tk.DoubleVar(value=0.7)
         self.stress_var = tk.DoubleVar(value=0.25)
         self.seed_var = tk.IntVar(value=42)
+        self.stream_host_var = tk.StringVar(value=DEFAULT_STREAM_HOST)
+        self.stream_port_var = tk.StringVar(value=str(DEFAULT_STREAM_PORT))
+        self.artifacts_root_var = tk.StringVar(value=str(Path("artifacts").resolve()))
         self.status_var = tk.StringVar(value="Ready.")
 
         self.preview_recording: PlaybackRecording | None = None
@@ -48,6 +55,10 @@ class PlaybackInterface(tk.Tk):
         self._live_size = 0
         self._max_live_buffer_samples = 0
         self._stream_tick_count = 0
+        self._stream_sequence = 0
+        self._stream_target: tuple[str, int] | None = None
+        self._stream_start_wall_clock = 0.0
+        self._udp_socket: socket.socket | None = None
         self._slow_panel_interval = 3
         self._trace_signature: tuple[int, int, tuple[str, ...], int] | None = None
         self._trace_title_item: int | None = None
@@ -61,6 +72,7 @@ class PlaybackInterface(tk.Tk):
         self.headband_canvas: tk.Canvas
 
         self._build()
+        self.protocol("WM_DELETE_WINDOW", self._on_close)
         self.after(50, self._refresh_preview)
 
     def _build(self) -> None:
@@ -119,13 +131,29 @@ class PlaybackInterface(tk.Tk):
             side=tk.RIGHT
         )
 
+        streaming = ttk.LabelFrame(controls, text="Streaming", padding=12)
+        streaming.pack(fill=tk.X, pady=(20, 0))
+        ttk.Button(streaming, text="Start UDP Stream", command=self._start_stream).pack(fill=tk.X)
+        ttk.Button(streaming, text="Stop Stream", command=self._stop_stream).pack(fill=tk.X, pady=(8, 0))
+
         filename = ttk.LabelFrame(controls, text="Export", padding=12)
         filename.pack(fill=tk.X, pady=(20, 0))
         ttk.Label(filename, text="File name").pack(anchor="w")
         stem_entry = ttk.Entry(filename, textvariable=self.file_stem_var)
         stem_entry.pack(fill=tk.X, pady=(4, 8))
         stem_entry.bind("<KeyRelease>", lambda _event: self._set_status("File name updated."))
-        ttk.Button(filename, text="Start Generation", command=self._start_stream).pack(fill=tk.X)
+        stream_target = ttk.LabelFrame(controls, text="UDP Stream Target", padding=12)
+        stream_target.pack(fill=tk.X, pady=(20, 0))
+        ttk.Label(stream_target, text="Host").pack(anchor="w")
+        ttk.Entry(stream_target, textvariable=self.stream_host_var).pack(fill=tk.X, pady=(4, 8))
+        ttk.Label(stream_target, text="Port").pack(anchor="w")
+        ttk.Entry(stream_target, textvariable=self.stream_port_var).pack(fill=tk.X, pady=(4, 8))
+        ttk.Label(stream_target, text="Artifacts Root").pack(anchor="w")
+        ttk.Entry(stream_target, textvariable=self.artifacts_root_var).pack(fill=tk.X, pady=(4, 8))
+        ttk.Button(stream_target, text="Use Repo Artifacts", command=self._use_repo_artifacts).pack(fill=tk.X)
+        ttk.Button(stream_target, text="Choose Artifacts Folder", command=self._choose_artifacts_root).pack(fill=tk.X, pady=(8, 0))
+
+        ttk.Button(filename, text="Preview Locally", command=self._refresh_preview).pack(fill=tk.X)
         ttk.Button(filename, text="Stop", command=self._stop_stream).pack(fill=tk.X, pady=(8, 0))
         ttk.Button(filename, text="Choose Folder", command=self._choose_export_dir).pack(fill=tk.X)
         ttk.Button(filename, text="Export OpenBCI TXT", command=self._export_openbci).pack(fill=tk.X, pady=(8, 0))
@@ -249,7 +277,31 @@ class PlaybackInterface(tk.Tk):
 
     def _start_stream(self) -> None:
         self._stop_stream(silent=True)
-        self._streaming_sampler = SyntheticSampler(sample_rate=250.0, random_seed=int(self.seed_var.get()))
+        host = self.stream_host_var.get().strip() or DEFAULT_STREAM_HOST
+        try:
+            port = int(self.stream_port_var.get().strip())
+        except ValueError:
+            self._set_status("Stream port must be an integer.")
+            return
+        artifacts_root = Path(self.artifacts_root_var.get().strip() or "artifacts").expanduser().resolve()
+        try:
+            channel_names = required_stream_channel_names(artifacts_root=artifacts_root)
+        except Exception as exc:
+            self._set_status(f"Could not load stream channel layout: {exc}")
+            return
+        try:
+            self._udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        except OSError as exc:
+            self._set_status(f"Could not open UDP socket: {exc}")
+            return
+        self._stream_target = (host, port)
+        self._stream_sequence = 0
+        self._stream_start_wall_clock = time.time()
+        self._streaming_sampler = SyntheticSampler(
+            channel_names=channel_names,
+            sample_rate=250.0,
+            random_seed=int(self.seed_var.get()),
+        )
         self._stream_carry_state = None
         self._live_channel_names = list(self._streaming_sampler.channel_names)
         self._live_sample_rate = float(self._streaming_sampler.sample_rate)
@@ -262,8 +314,8 @@ class PlaybackInterface(tk.Tk):
         self._is_streaming = True
         self._stream_tick_count = 0
         self._set_status(
-            f"Streaming live with a {self._stream_window_seconds:.1f}s rolling view. "
-            f"Export duration is {float(self.duration_var.get()):.1f}s."
+            f"Streaming UDP to {host}:{port} with {len(self._live_channel_names)} channels. "
+            f"Local preview window is {self._stream_window_seconds:.1f}s."
         )
         self._tick_stream()
 
@@ -281,14 +333,15 @@ class PlaybackInterface(tk.Tk):
         )
         self._stream_carry_state = dict(sample.carry_state)
         self._append_live_chunk(sample.data, sample.sample_rate)
+        self._send_udp_chunk(sample.data, sample.sample_rate)
         visible_recording = self._visible_recording()
         self._redraw_fast_panels(visible_recording)
         self._stream_tick_count += 1
         if self._stream_tick_count == 1 or self._stream_tick_count % self._slow_panel_interval == 0:
             self._redraw_slow_panels(visible_recording)
         self._set_status(
-            f"Streaming live {self._stream_window_seconds:.1f}s view at {sample.sample_rate:.0f} Hz. "
-            f"Elapsed {self._live_elapsed_seconds:.1f}s. Export duration {float(self.duration_var.get()):.1f}s."
+            f"Sending UDP to {self._stream_target[0]}:{self._stream_target[1]} at {sample.sample_rate:.0f} Hz. "
+            f"Elapsed {self._live_elapsed_seconds:.1f}s. Sequence {self._stream_sequence}."
         )
         self._stream_job = self.after(int(round(self._stream_chunk_seconds * 1000.0)), self._tick_stream)
 
@@ -302,9 +355,39 @@ class PlaybackInterface(tk.Tk):
             self.preview_recording = self._snapshot_live_recording(source="stopped_live_preview")
         self._streaming_sampler = None
         self._stream_carry_state = None
+        if self._udp_socket is not None:
+            self._udp_socket.close()
+            self._udp_socket = None
+        self._stream_target = None
         self._redraw_preview()
         if was_streaming and not silent:
             self._set_status("Streaming stopped.")
+
+    def _send_udp_chunk(self, chunk: np.ndarray, sample_rate: float) -> None:
+        if self._udp_socket is None or self._stream_target is None:
+            return
+        duration_seconds = chunk.shape[1] / sample_rate
+        timestamp_start = self._stream_start_wall_clock + (self._stream_sequence * self._stream_chunk_seconds)
+        chunk_payload = EEGChunk(
+            timestamp_start=timestamp_start,
+            timestamp_end=timestamp_start + duration_seconds,
+            sample_rate=float(sample_rate),
+            channel_names=list(self._live_channel_names),
+            data=chunk,
+            metadata={
+                "source_name": "synthetic",
+                "concentration_level": float(self.concentration_var.get()),
+                "stress_level": float(self.stress_var.get()),
+                "seed": int(self.seed_var.get()),
+            },
+        )
+        try:
+            packet = pack_chunk_datagram(chunk_payload, sequence=self._stream_sequence)
+            self._udp_socket.sendto(packet, self._stream_target)
+            self._stream_sequence += 1
+        except OSError as exc:
+            self._stop_stream(silent=True)
+            self._set_status(f"UDP send failed: {exc}")
 
     def _append_live_chunk(self, chunk: np.ndarray, sample_rate: float) -> None:
         if self._max_live_buffer_samples <= 0:
@@ -526,7 +609,9 @@ class PlaybackInterface(tk.Tk):
         channel_power = np.sqrt(np.mean(np.square(recording.signal), axis=1))
         max_power = float(np.max(channel_power)) or 1.0
         for idx, channel_name in enumerate(recording.channel_names):
-            x_factor, y_factor = positions.get(channel_name, (0.0, 0.0))
+            if channel_name not in positions:
+                continue
+            x_factor, y_factor = positions[channel_name]
             x = center_x + radius * x_factor
             y = center_y + radius * y_factor
             value = float(channel_power[idx] / max_power)
@@ -555,6 +640,20 @@ class PlaybackInterface(tk.Tk):
         if selected:
             self.export_dir = Path(selected)
             self._set_status(f"Export folder set to {self.export_dir.resolve()}.")
+
+    def _choose_artifacts_root(self) -> None:
+        selected = filedialog.askdirectory(
+            title="Choose artifacts root",
+            initialdir=self.artifacts_root_var.get() or str(Path("artifacts").resolve()),
+        )
+        if selected:
+            self.artifacts_root_var.set(str(Path(selected).resolve()))
+            self._set_status(f"Artifacts root set to {Path(selected).resolve()}.")
+
+    def _use_repo_artifacts(self) -> None:
+        root = Path("artifacts").resolve()
+        self.artifacts_root_var.set(str(root))
+        self._set_status(f"Using artifacts root {root}.")
 
     def _export_openbci(self) -> None:
         default_path = self.export_dir / f"{self.file_stem_var.get().strip() or 'synthetic_openbci'}.txt"
@@ -596,6 +695,10 @@ class PlaybackInterface(tk.Tk):
 
     def _set_status(self, message: str) -> None:
         self.status_var.set(message)
+
+    def _on_close(self) -> None:
+        self._stop_stream(silent=True)
+        self.destroy()
 
 
 def main() -> None:

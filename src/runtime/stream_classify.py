@@ -45,7 +45,7 @@ def main() -> None:
                                 {
                                     "timestamp": output.timestamp,
                                     "source": output.source,
-                                    "sequence": sequence,
+                                    "chunk_sequence": sequence,
                                     "sender": f"{address[0]}:{address[1]}",
                                     "concentration_score": output.concentration_score,
                                     "stress_score": output.stress_score,

@@ -58,14 +58,34 @@ def _expand_classifier_probabilities(
     return expanded
 
 
-def load_models(artifacts_root: Path | None = None) -> dict[str, LoadedTaskModel]:
+def _resolve_task_artifact_dir(root: Path, task_name: str, cleanup_level: str | None) -> Path:
+    """Resolve the best available artifact directory for one task."""
+    if cleanup_level:
+        benchmark_dir = root / "cleanup_benchmark" / cleanup_level / task_name
+        if (benchmark_dir / "model.pkl").exists() and (benchmark_dir / "preprocessor.pkl").exists():
+            return benchmark_dir
+    direct_dir = root / task_name
+    return direct_dir
+
+
+def load_models(
+    artifacts_root: Path | None = None,
+    *,
+    concentration_cleanup_level: str | None = None,
+    stress_cleanup_level: str | None = None,
+) -> dict[str, LoadedTaskModel]:
     """Load trained task models from disk."""
     settings = get_settings()
     root = artifacts_root or settings.artifacts_root
     models: dict[str, LoadedTaskModel] = {}
+    cleanup_levels = {
+        "concentration": concentration_cleanup_level if concentration_cleanup_level is not None else settings.concentration_cleanup_level,
+        "stress": stress_cleanup_level if stress_cleanup_level is not None else settings.stress_cleanup_level,
+    }
     for task_name in ("concentration", "stress"):
-        model_payload = load_pickle(root / task_name / "model.pkl")
-        preprocessor = load_pickle(root / task_name / "preprocessor.pkl")
+        task_root = _resolve_task_artifact_dir(root, task_name, cleanup_levels[task_name])
+        model_payload = load_pickle(task_root / "model.pkl")
+        preprocessor = load_pickle(task_root / "preprocessor.pkl")
         _hydrate_preprocessor(preprocessor, settings)
         models[task_name] = LoadedTaskModel(
             model=model_payload["model"],
@@ -111,10 +131,18 @@ def _hydrate_preprocessor(preprocessor: PreprocessorBundle, settings) -> None:
             setattr(preprocessor, name, value)
 
 
-@lru_cache(maxsize=4)
-def _cached_models(artifacts_root_str: str) -> dict[str, LoadedTaskModel]:
+@lru_cache(maxsize=8)
+def _cached_models(
+    artifacts_root_str: str,
+    concentration_cleanup_level: str | None,
+    stress_cleanup_level: str | None,
+) -> dict[str, LoadedTaskModel]:
     path = Path(artifacts_root_str) if artifacts_root_str else None
-    return load_models(artifacts_root=path)
+    return load_models(
+        artifacts_root=path,
+        concentration_cleanup_level=concentration_cleanup_level,
+        stress_cleanup_level=stress_cleanup_level,
+    )
 
 
 def _load_window(path: Path) -> np.ndarray:
@@ -222,13 +250,25 @@ class RuntimeScorer:
         artifacts_root: Path | None = None,
         calibration_path: Path | None = None,
         models: dict[str, LoadedTaskModel] | None = None,
+        concentration_cleanup_level: str | None = None,
+        stress_cleanup_level: str | None = None,
     ) -> None:
         settings = get_settings()
         root = (artifacts_root or settings.artifacts_root).resolve()
         self.settings = settings
         self.artifacts_root = root
         self.calibration_path = calibration_path.resolve() if calibration_path else None
-        self.models = models if models is not None else _cached_models(str(root))
+        self.concentration_cleanup_level = concentration_cleanup_level if concentration_cleanup_level is not None else settings.concentration_cleanup_level
+        self.stress_cleanup_level = stress_cleanup_level if stress_cleanup_level is not None else settings.stress_cleanup_level
+        self.models = (
+            models
+            if models is not None
+            else _cached_models(
+                str(root),
+                self.concentration_cleanup_level,
+                self.stress_cleanup_level,
+            )
+        )
 
     def prepare_task_input(
         self,

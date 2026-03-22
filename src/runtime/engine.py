@@ -15,6 +15,7 @@ from src.runtime.baseline import BaselineInference
 from src.runtime.eeg_frame import EEGFrame
 from src.runtime.postprocessor import DecisionPostprocessor
 from src.runtime.treatment import TreatmentShim
+from src.runtime.user_profile import UserProfile, load_user_profile
 from src.runtime.window_buffer import WindowBuffer
 
 
@@ -48,6 +49,9 @@ class StreamingEngine:
         compatibility_adapter: object | None = None,
         artifacts_root: Path | None = None,
         calibration_path: Path | None = None,
+        user_profile_path: Path | None = None,
+        user_profile: UserProfile | None = None,
+        session_id: str | None = None,
         adaptation: AdaptationLayer | None = None,
         baseline: BaselineInference | None = None,
         postprocessor: DecisionPostprocessor | None = None,
@@ -57,6 +61,8 @@ class StreamingEngine:
         self.scorer = scorer or RuntimeScorer(artifacts_root=artifacts_root, calibration_path=calibration_path)
         self.treatment = treatment or TreatmentShim()
         self.compatibility_adapter = compatibility_adapter
+        self.user_profile = user_profile or (load_user_profile(user_profile_path) if user_profile_path else None)
+        self.session_id = session_id
         self.adaptation = adaptation or AdaptationLayer(
             canonical_channel_names=list(settings.cyton_channel_names),
             sample_rate=250.0,
@@ -122,6 +128,7 @@ class StreamingEngine:
                     "treatment_quality": dict(treated.quality),
                 },
             )
+            personalization_metadata = self._personalize_decision(decision)
             source_name = str(buffered_window.metadata.get("source_name", frame.source))
             outputs.append(
                 EngineOutput(
@@ -146,10 +153,29 @@ class StreamingEngine:
                         "adaptation_quality": adapted.quality,
                         "treatment_quality": dict(treated.quality),
                         "frame_quality": dict(frame.quality),
+                        **personalization_metadata,
                     },
                 )
             )
         return outputs
+
+    def _personalize_decision(self, decision) -> dict[str, Any]:
+        if self.user_profile is None:
+            return {}
+        personalized = self.user_profile.personalize(
+            concentration_raw=float(decision.concentration_raw),
+            stress_raw=float(decision.stress_raw),
+            session_id=self.session_id,
+        )
+        return {
+            "profile_applied": True,
+            "profile_id": personalized.profile_id,
+            "session_id": personalized.session_id,
+            "concentration_personalized": personalized.concentration_personalized,
+            "stress_personalized": personalized.stress_personalized,
+            "quadrant_state": personalized.quadrant_state,
+            "stress_semantics": self.user_profile.stress_semantics,
+        }
 
     def process_window(
         self,

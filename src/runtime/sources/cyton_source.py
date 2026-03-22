@@ -21,6 +21,7 @@ class CytonSource(EEGSource):
         self,
         serial_port: str | None = None,
         chunk_samples: int = 125,
+        channel_names: list[str] | None = None,
     ) -> None:
         self.settings = get_settings()
         self.serial_port = serial_port or self.settings.cyton_serial_port
@@ -30,7 +31,7 @@ class CytonSource(EEGSource):
         self.sample_rate = float(CYTON_SAMPLE_RATE)
         self.eeg_channels: list[int] = []
         self.timestamp_channel: int | None = None
-        self.channel_names = list(self.settings.cyton_channel_names)
+        self.channel_names = list(channel_names or self.settings.cyton_channel_names)
 
     def start(self) -> None:
         try:

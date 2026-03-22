@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 import numpy as np
 import pandas as pd
@@ -232,8 +232,32 @@ def _determine_profile(task_name: str, train_bundle: RawDatasetBundle, settings:
     }
 
 
-def _build_preprocessor(task_name: str, train_bundle: RawDatasetBundle, settings: Settings) -> PreprocessorBundle:
+def _apply_channel_override(profile: dict[str, Any], channel_names_override: Sequence[str] | None) -> dict[str, Any]:
+    if channel_names_override is None:
+        return profile
+    selected = canonicalize_channel_names(channel_names_override)
+    canonical = canonicalize_channel_names(profile["channel_names"])
+    missing = [name for name in selected if name not in canonical]
+    if missing:
+        raise ValueError(f"Requested runtime channels are not available in the training profile: {missing}")
+    dropped = [name for name in canonical if name not in selected]
+    return {
+        **profile,
+        "profile_name": f'{profile["profile_name"]}_custom',
+        "channel_names": selected,
+        "dropped_channels": dropped,
+    }
+
+
+def _build_preprocessor(
+    task_name: str,
+    train_bundle: RawDatasetBundle,
+    settings: Settings,
+    *,
+    channel_names_override: Sequence[str] | None = None,
+) -> PreprocessorBundle:
     profile = _determine_profile(task_name, train_bundle, settings)
+    profile = _apply_channel_override(profile, channel_names_override)
     return PreprocessorBundle(
         task_name=task_name,
         profile_name=profile["profile_name"],
@@ -325,14 +349,20 @@ def _window_to_features(windows: np.ndarray, metadata: pd.DataFrame, feature_bui
     return np.vstack(rows), metadata.reset_index(drop=True).copy()
 
 
-def prepare_data(loader: BaseDatasetLoader, task_name: str, settings: Settings) -> tuple[PreparedData, SubjectSplit]:
+def prepare_data(
+    loader: BaseDatasetLoader,
+    task_name: str,
+    settings: Settings,
+    *,
+    channel_names_override: Sequence[str] | None = None,
+) -> tuple[PreparedData, SubjectSplit]:
     root_path = getattr(loader, "settings", settings).eegmat_root if task_name == "concentration" else getattr(loader, "settings", settings).stress_data_root
     LOGGER.info("Loading %s dataset from %s", task_name, root_path)
     bundle = loader.load_raw()
     LOGGER.info("Loaded %s recordings across %s subjects", len(bundle.recordings), len({record.subject_id for record in bundle.recordings}))
     split = train_val_test_subject_split(bundle, settings.split_train, settings.split_val, settings.split_test, settings.random_seed)
     LOGGER.info("Subject split complete: train=%s, val=%s, test=%s", len(split.train_subjects), len(split.val_subjects), len(split.test_subjects))
-    preprocessor = _build_preprocessor(task_name, split.train, settings)
+    preprocessor = _build_preprocessor(task_name, split.train, settings, channel_names_override=channel_names_override)
     LOGGER.info("Using preprocessing profile=%s | channels=%s | dropped=%s | reref=%s | target_fs=%s", preprocessor.profile_name, len(preprocessor.channel_names), preprocessor.dropped_channels, preprocessor.rereference_mode, preprocessor.target_sampling_rate)
 
     train_windowed, train_qc = _filter_windows(loader.make_windows(split.train, preprocessor), preprocessor)

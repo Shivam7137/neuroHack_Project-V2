@@ -1,0 +1,20 @@
+{
+  "artifacts_root": "C:\\Users\\shiva\\School Stuff\\NeuroHack V2\\artifacts\\runtime_v1",
+  "bundle_name": "runtime_v1",
+  "channel_names": [
+    "F7",
+    "F3",
+    "F4",
+    "F8",
+    "P7",
+    "P8",
+    "O1",
+    "O2"
+  ],
+  "concentration_cleanup": "light",
+  "stress_cleanup": "heavy",
+  "tasks": [
+    "concentration",
+    "stress"
+  ]
+}

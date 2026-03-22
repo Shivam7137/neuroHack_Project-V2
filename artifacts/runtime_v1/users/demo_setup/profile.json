@@ -1,0 +1,266 @@
+{
+  "channel_names": [
+    "F7",
+    "F3",
+    "F4",
+    "F8",
+    "P7",
+    "P8",
+    "O1",
+    "O2"
+  ],
+  "created_at_utc": "20260322T134237Z",
+  "focus_high_anchor": 0.003450630579784544,
+  "focus_low_anchor": 0.0034496305797845437,
+  "metadata": {
+    "artifacts_root": "C:\\Users\\shiva\\School Stuff\\NeuroHack V2\\artifacts\\runtime_v1",
+    "completed_at_epoch": 1774186957.1536076,
+    "session_id": "session_7d7cb1c0f79e",
+    "setup_version": "runtime_setup_v1",
+    "stress_semantics": "personalized_workload_proxy_v1",
+    "stress_ui_label": "stress"
+  },
+  "personalization_threshold": 0.6,
+  "phase_summaries": {
+    "focused": {
+      "accepted": true,
+      "accepted_windows": 10,
+      "concentration_quantiles": {
+        "p10": 2.2120269043608696e-07,
+        "p50": 0.0007352023619995754,
+        "p90": 0.6440183541767351
+      },
+      "feature_anchors": {
+        "f3_alpha": 0.10665777764238002,
+        "f3_beta": 0.11642483817552127,
+        "f3_engagement_index": 0.13142141581140188,
+        "f3_theta": 0.004078396382900558,
+        "f4_alpha": 0.11380078421044262,
+        "f4_beta": 0.13580895169583257,
+        "f4_engagement_index": 0.14406981343823577,
+        "f4_theta": 0.0040318037331581276,
+        "f7_alpha": 0.1277674272517926,
+        "f7_beta": 0.11699293586414475,
+        "f7_engagement_index": 0.11118343213015289,
+        "f7_theta": 0.0037640132050813734,
+        "f8_alpha": 0.11257316624948466,
+        "f8_beta": 0.1462034515131233,
+        "f8_engagement_index": 0.1577401379336005,
+        "f8_theta": 0.003284672335855721,
+        "frontal_alpha_asymmetry": 0.030368479204850085,
+        "o1_alpha": 0.34242701889394334,
+        "o1_beta": 0.09540617802450246,
+        "o1_theta": 0.00794768694795885,
+        "o2_alpha": 0.25126023470227005,
+        "o2_beta": 0.058417210934148936,
+        "o2_theta": 0.005411822972113134,
+        "p7_alpha": 0.2599813556531022,
+        "p7_beta": 0.1052637875110249,
+        "p7_theta": 0.0030058743427425127,
+        "p8_alpha": 0.24278770719807474,
+        "p8_beta": 0.11783347623903455,
+        "p8_theta": 0.004013303021744731
+      },
+      "modifiers": {
+        "generator_concentration": 0.94,
+        "generator_stress": 0.12,
+        "modifier_level": 3,
+        "task_step": 9
+      },
+      "notes": [
+        "modifier_increased_to_1",
+        "modifier_increased_to_2",
+        "modifier_increased_to_3"
+      ],
+      "phase_name": "focused",
+      "quality_mean": 1.0,
+      "stability_score": 0.5,
+      "stress_quantiles": {
+        "p10": 0.3127656560846562,
+        "p50": 0.3430853505291006,
+        "p90": 0.3476839327801828
+      },
+      "target_state": "focused",
+      "total_windows": 20
+    },
+    "idle": {
+      "accepted": true,
+      "accepted_windows": 8,
+      "concentration_quantiles": {
+        "p10": 0.0022333380965386305,
+        "p50": 0.0034496305797845437,
+        "p90": 0.007817385060182298
+      },
+      "feature_anchors": {
+        "f3_alpha": 0.03342192318023715,
+        "f3_beta": 0.012591966273819932,
+        "f3_engagement_index": 0.032371973236303114,
+        "f3_theta": 0.015200252945324302,
+        "f4_alpha": 0.02086279142724035,
+        "f4_beta": 0.011050448254778364,
+        "f4_engagement_index": 0.02703342386495558,
+        "f4_theta": 0.030233438142034937,
+        "f7_alpha": 0.022381141796926966,
+        "f7_beta": 0.016487283459815216,
+        "f7_engagement_index": 0.0602686190161722,
+        "f7_theta": 0.011814273099237937,
+        "f8_alpha": 0.011493820334129608,
+        "f8_beta": 0.012455489029959941,
+        "f8_engagement_index": 0.04662629880430924,
+        "f8_theta": 0.021897981474533347,
+        "frontal_alpha_asymmetry": -0.0825954786301682,
+        "o1_alpha": 0.05322315219056324,
+        "o1_beta": 0.005745263195401448,
+        "o1_theta": 0.0052211516271268585,
+        "o2_alpha": 0.042957504062831345,
+        "o2_beta": 0.006119975729283352,
+        "o2_theta": 0.015957914760409905,
+        "p7_alpha": 0.06376973094555041,
+        "p7_beta": 0.009409975847474635,
+        "p7_theta": 0.011757849897905221,
+        "p8_alpha": 0.058019211373344294,
+        "p8_beta": 0.00733377548829955,
+        "p8_theta": 0.005921837454895428
+      },
+      "modifiers": {
+        "generator_concentration": 0.05,
+        "generator_stress": 0.15,
+        "modifier_level": 0
+      },
+      "notes": [],
+      "phase_name": "idle",
+      "quality_mean": 1.0,
+      "stability_score": 1.0,
+      "stress_quantiles": {
+        "p10": 0.3934355966810967,
+        "p50": 0.4350853505291006,
+        "p90": 0.45278319047619053
+      },
+      "target_state": "idle",
+      "total_windows": 8
+    },
+    "rest": {
+      "accepted": true,
+      "accepted_windows": 11,
+      "concentration_quantiles": {
+        "p10": 0.0005471967713003631,
+        "p50": 0.0009937982480569645,
+        "p90": 0.0016553705258238068
+      },
+      "feature_anchors": {
+        "f3_alpha": 0.03619491333700632,
+        "f3_beta": 0.020219451757412066,
+        "f3_engagement_index": 0.04736494532574331,
+        "f3_theta": 0.017165888671622297,
+        "f4_alpha": 0.009802163732049791,
+        "f4_beta": 0.02128758633225816,
+        "f4_engagement_index": 0.08265766333619613,
+        "f4_theta": 0.022390233005676878,
+        "f7_alpha": 0.04905386440533334,
+        "f7_beta": 0.016173391055959472,
+        "f7_engagement_index": 0.03657643465341345,
+        "f7_theta": 0.006218714815459131,
+        "f8_alpha": 0.022079760344963447,
+        "f8_beta": 0.022703501422426085,
+        "f8_engagement_index": 0.07879604668602481,
+        "f8_theta": 0.013936484088103959,
+        "frontal_alpha_asymmetry": -0.17880602481922303,
+        "o1_alpha": 0.08201226416926143,
+        "o1_beta": 0.008714348170778461,
+        "o1_theta": 0.005747868066644454,
+        "o2_alpha": 0.09219249977532745,
+        "o2_beta": 0.01003928197391456,
+        "o2_theta": 0.004188158609816901,
+        "p7_alpha": 0.02424533398026353,
+        "p7_beta": 0.012509027188419551,
+        "p7_theta": 0.027608802756429733,
+        "p8_alpha": 0.03505582987904641,
+        "p8_beta": 0.011593467434811959,
+        "p8_theta": 0.022152566487185804
+      },
+      "modifiers": {
+        "generator_concentration": 0.15,
+        "generator_stress": 0.1,
+        "modifier_level": 0
+      },
+      "notes": [],
+      "phase_name": "rest",
+      "quality_mean": 1.0,
+      "stability_score": 0.9166666666666666,
+      "stress_quantiles": {
+        "p10": 0.3287497156084653,
+        "p50": 0.39655861111111107,
+        "p90": 0.4338953174603173
+      },
+      "target_state": "rest",
+      "total_windows": 12
+    },
+    "stressed": {
+      "accepted": true,
+      "accepted_windows": 10,
+      "concentration_quantiles": {
+        "p10": 0.49719531627401437,
+        "p50": 0.5671141567163427,
+        "p90": 0.677946091474692
+      },
+      "feature_anchors": {
+        "f3_alpha": 0.013382000739150574,
+        "f3_beta": 0.12287999684251608,
+        "f3_engagement_index": 0.20784198609723867,
+        "f3_theta": 0.0605202934687596,
+        "f4_alpha": 0.022253379215730697,
+        "f4_beta": 0.11083012335324725,
+        "f4_engagement_index": 0.20756124369962897,
+        "f4_theta": 0.04449205539538727,
+        "f7_alpha": 0.017146284363644383,
+        "f7_beta": 0.09189231521432364,
+        "f7_engagement_index": 0.15009033115885242,
+        "f7_theta": 0.059384557517391544,
+        "f8_alpha": 0.022285747701924364,
+        "f8_beta": 0.10720235890356676,
+        "f8_engagement_index": 0.17425382772801828,
+        "f8_theta": 0.05461525951073505,
+        "frontal_alpha_asymmetry": 0.06213678883863136,
+        "o1_alpha": 0.07265160837259811,
+        "o1_beta": 0.04877650199173927,
+        "o1_theta": 0.02561338392585288,
+        "o2_alpha": 0.05190340252432092,
+        "o2_beta": 0.0548119974369446,
+        "o2_theta": 0.032880490613593355,
+        "p7_alpha": 0.03812766215637779,
+        "p7_beta": 0.08380879455310523,
+        "p7_theta": 0.031494521751321045,
+        "p8_alpha": 0.04158168084904177,
+        "p8_beta": 0.07131450777573588,
+        "p8_theta": 0.03404674015790144
+      },
+      "modifiers": {
+        "generator_concentration": 0.41,
+        "generator_stress": 0.88,
+        "modifier_level": 2,
+        "task_step": 13
+      },
+      "notes": [
+        "modifier_increased_to_1",
+        "modifier_increased_to_2"
+      ],
+      "phase_name": "stressed",
+      "quality_mean": 1.0,
+      "stability_score": 0.625,
+      "stress_quantiles": {
+        "p10": 0.4392709656084654,
+        "p50": 0.5407121759259259,
+        "p90": 0.5925857076719576
+      },
+      "target_state": "stressed",
+      "total_windows": 16
+    }
+  },
+  "profile_id": "profile_505ea5491686",
+  "smoothing_alpha": 0.35,
+  "source_type": "generator",
+  "stress_high_anchor": 0.5407121759259259,
+  "stress_low_anchor": 0.4158219808201058,
+  "stress_semantics": "ui_stress_label_workload_proxy_v1",
+  "user_id": "demo_setup"
+}

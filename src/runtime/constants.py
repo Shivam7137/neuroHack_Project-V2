@@ -5,6 +5,7 @@ from __future__ import annotations
 import math
 
 CYTON_CHANNELS = ["Fp1", "Fp2", "C3", "C4", "P3", "P4", "O1", "O2"]
+RUNTIME_SETUP_CHANNELS = ["F7", "F3", "F4", "F8", "P7", "P8", "O1", "O2"]
 CYTON_SAMPLE_RATE = 250
 WINDOW_SEC = 2.0
 STRIDE_SEC = 0.25

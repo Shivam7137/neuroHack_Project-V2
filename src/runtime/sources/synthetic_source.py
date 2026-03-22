@@ -69,6 +69,7 @@ class SyntheticSource(EEGSource):
             concentration_level=float(concentration),
             stress_level=float(stress),
         )
+        self.carry_state = None
 
     def set_seed(self, seed: int) -> None:
         self.config.seed = int(seed)
